@@ -10,8 +10,8 @@ import io.restassured.response.Response;
 
 	public class GetApi {
      
-		public static void getResponse(String[]args) {
-			
+		@Test
+		public  void getResponse() {
 			Response getResponse=given().
 					param("foo1", "bar1")
 					.param("foo2", "bar2")
@@ -20,6 +20,16 @@ import io.restassured.response.Response;
 					.contentType(ContentType.JSON)
 					.when()
 					.get("https://postman-echo.com/get");
+			
+			String url=given().
+					param("foo1", "bar1")
+					.param("foo2", "bar2")
+					.auth().none()
+					.header("Content-Type","application/json")
+					.contentType(ContentType.JSON)
+					.when()
+					.get("https://postman-echo.com/get").then().extract().path("url");
+			System.out.println("URL is" +  url);
 					
 					getResponse.prettyPrint();
 					//System.out.println("Response is " +getResponse.asString());				
