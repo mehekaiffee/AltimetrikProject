@@ -3,13 +3,14 @@ package ApiAutomation;
 import static io.restassured.RestAssured.given;
 
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 
 	public class GetApi {
-
-		public static void main(String[] args) {
+     
+		public static void getResponse(String[]args) {
 			
 			Response getResponse=given().
 					param("foo1", "bar1")
@@ -35,7 +36,7 @@ import io.restassured.response.Response;
 					Assert.assertTrue(traceId.contains("Root="));
 					Assert.assertEquals(getResponse.getBody().path("headers.content-type"), "application/json; charset=UTF-8");
 					Assert.assertEquals(getResponse.getBody().path("headers.accept"), "*/*");
-					Assert.assertEquals(getResponse.getBody().path("headers.user-agent"), "Apache-HttpClient/4.5.3 (Java/11.0.7)");
+					Assert.assertEquals(getResponse.getBody().path("headers.user-agent"), "Apache-HttpClient/4.5.3 (Java/12.0.1)");
 					Assert.assertEquals(getResponse.getBody().path("headers.accept-encoding"), "gzip,deflate");				
 					Assert.assertEquals(getResponse.getBody().path("url"), "https://postman-echo.com/get?foo1=bar1&foo2=bar2");
 					
@@ -43,4 +44,5 @@ import io.restassured.response.Response;
 					System.out.println("Response Time is " +getResponse.getTime());
 		
 		}
+     
 	}

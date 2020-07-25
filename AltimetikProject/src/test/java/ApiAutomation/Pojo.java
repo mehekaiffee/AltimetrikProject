@@ -1,6 +1,8 @@
 package ApiAutomation;
 
-public class Pojo {
+
+
+public class Pojo  {
 	
 			
 		private String foo1;

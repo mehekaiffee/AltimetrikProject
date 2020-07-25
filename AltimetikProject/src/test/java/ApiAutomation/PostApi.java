@@ -17,6 +17,8 @@ public static void main(String[] args) {
 				.when()
 				.body(new File("./Payload.json")).log().all()
 				.post("https://postman-echo.com/post");
+		
+		postResponse.prettyPrint();
 
 		        Assert.assertEquals(postResponse.statusCode(),200);
 		
@@ -30,7 +32,7 @@ public static void main(String[] args) {
 				Assert.assertTrue(traceId.contains("Root="));
 				Assert.assertEquals(postResponse.getBody().path("headers.content-type"), "application/json; charset=UTF-8");
 				Assert.assertEquals(postResponse.getBody().path("headers.accept"), "*/*");
-				Assert.assertEquals(postResponse.getBody().path("headers.user-agent"), "Apache-HttpClient/4.5.3 (Java/11.0.7)");
+				Assert.assertEquals(postResponse.getBody().path("headers.user-agent"), "Apache-HttpClient/4.5.3 (Java/12.0.1)");
 				Assert.assertEquals(postResponse.getBody().path("headers.accept-encoding"), "gzip,deflate");				
 				Assert.assertEquals(postResponse.getBody().path("url"), "https://postman-echo.com/post");
 
